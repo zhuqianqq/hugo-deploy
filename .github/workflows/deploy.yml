@@ -21,7 +21,7 @@ jobs:
           extended: true
 
       - name: Build Web
-        run: hugo --minify  # 生成静态文件到 public/ 目录
+        run: hugo -D  # 生成静态文件到 public/ 目录
 
       - name: Deploy Web
         uses: peaceiris/actions-gh-pages@v4
