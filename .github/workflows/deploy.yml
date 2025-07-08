@@ -16,7 +16,7 @@ jobs:
           fetch-depth: 0    # 获取全部历史
 
       - name: Setup Hugo
-        uses: peaceiris/actions-hugo@v3ad
+        uses: peaceiris/actions-hugo@v3
         with:
           hugo-version: '0.136.3'
           extended: true
