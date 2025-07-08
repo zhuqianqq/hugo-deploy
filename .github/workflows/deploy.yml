@@ -1,0 +1,33 @@
+name: Deploy Hugo Site
+
+on:
+  push:
+    branches:
+      - main  # 监听 main 分支的推送
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0    # 获取全部历史
+
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v3
+        with:
+          hugo-version: '0.136.3'
+          extended: true
+
+      - name: Build Web
+        run: hugo --minify  # 生成静态文件到 public/ 目录
+
+      - name: Deploy Web
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          PERSONAL_TOKEN: ${{ secrets.TOKEN }}
+          EXTERNAL_REPOSITORY: zhuqianqq/hugo-site
+          PUBLISH_BRANCH: main
+          PUBLISH_DIR: ./public
+          commit_message: auto deploy
